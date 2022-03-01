@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -20,6 +21,8 @@ namespace Valve.VR.InteractionSystem
 			MoveToLocation,
 			SwitchToNewScene
 		};
+
+        public static string teleportName;
 
 		//Public variables
 		public TeleportPointType teleportType = TeleportPointType.MoveToLocation;
@@ -179,7 +182,6 @@ namespace Valve.VR.InteractionSystem
 					case TeleportPointType.SwitchToNewScene:
 						{
 							pointIcon = switchSceneIcon;
-
 							animation.clip = animation.GetClip( switchSceneAnimation );
 						}
 						break;
@@ -225,8 +227,12 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( !string.IsNullOrEmpty( switchToScene ) )
 			{
-				Debug.Log("<b>[SteamVR Interaction]</b> TeleportPoint: Hook up your level loading logic to switch to new scene: " + switchToScene, this);
-			}
+                teleportName = this.gameObject.ToString();
+                Debug.Log(teleportName);
+                Debug.Log("<b>[SteamVR Interaction]</b> TeleportPoint: Hook up your level loading logic to switch to new scene: " + switchToScene, this);
+                SceneManager.LoadScene(sceneName: switchToScene);
+
+            }
 			else
 			{
 				Debug.LogError("<b>[SteamVR Interaction]</b> TeleportPoint: Invalid scene name to switch to: " + switchToScene, this);

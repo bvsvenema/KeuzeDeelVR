@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/SkeeBall.unity
+    guid: 4a6366184898fe14b82b1cf36552fe35
   m_configObjects:
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 84189574e3ccabb41a5b7ba39c1dd3c4, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 746d8c78aa8ba514f824836a54a5f6c5, type: 2}
