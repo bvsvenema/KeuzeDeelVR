@@ -36,8 +36,6 @@ public class KeyFeedBack : MonoBehaviour
         }
         else
         {
-
-
             keyCanHitAgain = true;
         }
     }
