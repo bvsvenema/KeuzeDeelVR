@@ -14,6 +14,7 @@ public class KeyDetector : MonoBehaviour
 
     //priate variables
     private GameObject player;
+    public GameObject KeyBoard;
     private bool secondPlayer = false;
 
     private void Start()
@@ -66,8 +67,9 @@ public class KeyDetector : MonoBehaviour
                             if (TeleportPoint.teleportInt == 1)
                             {
                                 Debug.Log("Just one player go to game");
+                                KeyBoard.SetActive(false);
                                 //transform rig to game
-                                player.transform.position = new Vector3(2.85f, 0.036f, 1);
+                                player.transform.position = new Vector3(2.85f, 0.036f, 0.8f);
                             }
                             else
                             {
@@ -85,14 +87,13 @@ public class KeyDetector : MonoBehaviour
                                     }
                                     else
                                     {
-                                        Debug.Log("Start Game");
+                                        Debug.Log("Start 2P Game");
+                                        KeyBoard.SetActive(false);
                                         //transform rig to game
-                                        player.transform.position = new Vector3(2.85f, 0.036f, 1);
+                                        player.transform.position = new Vector3(2.85f, 0.036f, 0.8f);
                                     }
                                 }
                             }
-                            Debug.Log("sumbit");
-                           // GM.StartBowlingMiniGame();
                         }
                         else /*if (KeyFeedBack.keyHitted != 10)*/
                         {

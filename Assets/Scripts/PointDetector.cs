@@ -6,16 +6,10 @@ public class PointDetector : MonoBehaviour
 {
     public int valuePoints;
     public int skeeball;
-    private static int ballsThrown = 0;
     public ScoreManager SM;
     public GameManager GM;
     public static bool playerOneHasTrown = false;
     public static bool playerTwoHasTrown = false;
-
-    private void Start()
-    {
-
-    }
 
     private void OnTriggerExit(Collider other)
     {
@@ -24,38 +18,38 @@ public class PointDetector : MonoBehaviour
             switch (skeeball)
             {
                 case 1:
-                    if (ballsThrown == 2)
+                    if (SM.BallsThrownP1 == 2)
                     {
+                        SM.PlayerScore1 += valuePoints;
                         playerOneHasTrown = true;
+                        SM.BallsThrownP1 = 0;
                         Debug.Log("next player or end game");
                         GM.EndOfFrame();
-                        ballsThrown = 0;
                     }
                     else
                     {
-                        ballsThrown++;
+                        SM.BallsThrownP1++;
                         SM.PlayerScore1 += valuePoints;
                         Debug.Log("Test");
                     }
                     break;
                 case 2:
-                    if (ballsThrown == 2)
-                    { 
+                    if (SM.BallsThrownP2 == 2)
+                    {
+                        SM.PlayerScore1 += valuePoints;
+                        SM.BallsThrownP2 = 0;
                         playerTwoHasTrown = true;
                         GM.EndOfFrame();
                         Debug.Log("next player or end game");
-                        ballsThrown = 0;
                     }
                     else
                     {
-                        ballsThrown++;
+                        SM.BallsThrownP2++;
                         SM.PlayerScore2 += valuePoints;
                         Debug.Log("Test2");
                     }
                     break;
             }
-            //Debug.Log(valuePoints);
-            Debug.Log("Ballsthrown is" + ballsThrown);
         }
     }
 }

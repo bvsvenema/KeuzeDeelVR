@@ -7,10 +7,9 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-
+    private ScoreManager SM;
     //public varaibles
     public int rounds = 3;
-    public int roundCount;
     public bool Testing; private const int maxLength = 10;
 
     //Gameobject callings
@@ -20,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        SM = GetComponent<ScoreManager>();
         if (Testing == true)
         {
             TeleportPoint.teleportInt = 2;
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
     public void EndOfFrame()
     {
         Debug.Log("this script");
-        if (roundCount == rounds)
+        if (SM.Frame == rounds)
         {
             Debug.Log("End of Game");
             //end of game
@@ -89,8 +89,8 @@ public class GameManager : MonoBehaviour
             switch (TeleportPoint.teleportInt)
             {
                 case 1:
-                    roundCount++;
-                    Debug.Log("Round is" + roundCount);
+                    SM.Frame++;
+                    Debug.Log("Round is" + SM.Frame);
                     //ResetBalls And Next Frame
                     break;
                 case 2:
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
                     {
                         //player one is again
                         Debug.Log("Both has thrown");
-                        roundCount++;
+                        SM.Frame++;
                         PointDetector.playerOneHasTrown = false;
                         PointDetector.playerTwoHasTrown = false;
                         player.transform.position = new Vector3(2.9f, 0, 1.171f);
