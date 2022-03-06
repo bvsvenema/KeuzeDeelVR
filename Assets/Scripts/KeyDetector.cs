@@ -10,7 +10,7 @@ public class KeyDetector : MonoBehaviour
     //dont look here just some messy code ;(
 
     //Script Calling
-    public GameManager GM;
+    public ScoreManager SM;
 
     //priate variables
     private GameObject player;
@@ -41,23 +41,23 @@ public class KeyDetector : MonoBehaviour
                         {
                             if (secondPlayer == false)
                             {
-                                GM.CappedString += " ";
+                                SM.CappedString += " ";
                             }
                             else
                             {
-                                GM.CappedString2 += " ";
+                                SM.CappedString2 += " ";
                             }
                         }
                         else if (key.text == "<--")
                         {
                             if (secondPlayer == false)
                             {
-                                GM.CappedString = GM.CappedString.Substring(0, GM.CappedString.Length - 1);
+                                SM.CappedString = SM.CappedString.Substring(0, SM.CappedString.Length - 1);
                                 KeyFeedBack.keyHitted--;
                             }
                             else
                             {
-                                GM.CappedString2 = GM.CappedString2.Substring(0, GM.CappedString2.Length - 1);
+                                SM.CappedString2 = SM.CappedString2.Substring(0, SM.CappedString2.Length - 1);
                                 KeyFeedBack.keyHitted--;
                             }
                         }
@@ -79,7 +79,7 @@ public class KeyDetector : MonoBehaviour
                                 }
                                 else
                                 {
-                                    if (GM.CappedString2 == null)
+                                    if (SM.CappedString2 == null)
                                     {
                                         Debug.Log("Set Player First"); 
                                     }
@@ -98,11 +98,11 @@ public class KeyDetector : MonoBehaviour
                         {
                             if (secondPlayer == false)
                             {
-                                GM.CappedString += key.text;
+                                SM.CappedString += key.text;
                             }
                             else
                             {
-                                GM.CappedString2 += key.text;
+                                SM.CappedString2 += key.text;
                             }
 
                         }

@@ -7,31 +7,23 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    PointDetector pointDetector;
 
-    //plublic Gameobject callings
-    public TextMeshProUGUI playerTextOutput1;
-    public TextMeshProUGUI playerTextOutput2;
-    public TextMeshProUGUI scorePlayer1;
-    public TextMeshProUGUI scorePlayer2;
+    //public varaibles
     public int rounds = 3;
     public int roundCount;
+    public bool Testing; private const int maxLength = 10;
 
-    private bool Testing;
-
+    //Gameobject callings
     public List<GameObject> singleplayer;
     public List<GameObject> twoPlayer;
-
-    //private vaireables
     private GameObject player;
-
-
-    //private data
-    private const int maxLength = 10;
 
     public void Start()
     {
-
+        if (Testing == true)
+        {
+            TeleportPoint.teleportInt = 2;
+        }
         Debug.Log(TeleportPoint.teleportInt);
         //Testing data trough scrips
 
@@ -42,11 +34,12 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         if (Testing == true)
         {
-            player.transform.position = new Vector3(0, 0.036f, 0);
+            player.transform.position = new Vector3(2.9f, 0, 1.171f);
         }
         else
         {
-            player.transform.position = new Vector3(30, 0.036f, 0);
+            player = GameObject.FindGameObjectWithTag("Player");
+            player.transform.position = new Vector3(30, 0, 0);
 
             switch (TeleportPoint.teleportInt)
             {
@@ -85,8 +78,10 @@ public class GameManager : MonoBehaviour
 
     public void EndOfFrame()
     {
+        Debug.Log("this script");
         if (roundCount == rounds)
         {
+            Debug.Log("End of Game");
             //end of game
         }
         else
@@ -95,67 +90,28 @@ public class GameManager : MonoBehaviour
             {
                 case 1:
                     roundCount++;
+                    Debug.Log("Round is" + roundCount);
                     //ResetBalls And Next Frame
                     break;
                 case 2:
                     //to second player and then next frame
-                    if(pointDetector.playerOneHasTrown || pointDetector.playerTwoHasTrown)
+                    if(PointDetector.playerOneHasTrown == true && PointDetector.playerTwoHasTrown == true)
                     {
+                        //player one is again
+                        Debug.Log("Both has thrown");
                         roundCount++;
-                        pointDetector.playerOneHasTrown = false;
-                        pointDetector.playerTwoHasTrown = false;
-                        player.transform.position = new Vector3(0.26f, 0.036f, 1);
+                        PointDetector.playerOneHasTrown = false;
+                        PointDetector.playerTwoHasTrown = false;
+                        player.transform.position = new Vector3(2.9f, 0, 1.171f);
                     }
-                    else if (pointDetector.playerOneHasTrown)
+                    else if (PointDetector.playerOneHasTrown == true)
                     {
-                        player.transform.position = new Vector3(0.26f, 0.036f, 1);
+                        Debug.Log("one has thrown");
+                        //player 2 is
+                        player.transform.position = new Vector3(-0.2f, 0, 1);
                     }
                     break;
             } 
         }
     }
-
-    //set the string for the name('s) or scores
-    public string CappedString
-    {
-        get { return playerTextOutput1.text; }
-        set { playerTextOutput1.text = value != null && value.Length > maxLength ? value.Substring(0, maxLength) : value; }
-    }
-
-    public string CappedString2
-    {
-        get { return playerTextOutput2.text; }
-        set { playerTextOutput2.text = value != null && value.Length > maxLength ? value.Substring(0, maxLength) : value; }
-    }
-
-    public int PlayerScore1
-    {
-        get { return pointDetector.valuePoints; }
-        set { pointDetector.valuePoints = value;
-            UpdatePlayer1Score(); }
-    }
-
-    public int PlayerScore2
-    {
-        get { return pointDetector.valuePoints; }
-        set
-        { pointDetector.valuePoints = value;
-            UpdatePlayer2Score(); }
-    }
-
-    //updates score to text
-    public void UpdatePlayer1Score()
-    {
-        scorePlayer1.text = scorePlayer1 + " " + roundCount;
-    }
-
-    public void UpdatePlayer2Score()
-    {
-        scorePlayer1.text = scorePlayer2 + " " + roundCount;
-    }
-
-
-
-
-
 }

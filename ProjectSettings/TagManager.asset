@@ -17,8 +17,8 @@ TagManager:
   - Player
   - Handle
   - KeyBoard
-  - 
-  - 
+  - OnlyPlayer
+  - NotWithPlayer
   - 
   - 
   - 
