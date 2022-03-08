@@ -13,16 +13,14 @@ public class Pointer : MonoBehaviour
     private LineRenderer lineRenderer = null;
     private VRInputModel inputModule = null;
 
-    private void Awake()
+
+    private void Start()
     {
+
         Camera = GetComponent<Camera>();
         Camera.enabled = false;
 
         lineRenderer = GetComponent<LineRenderer>();
-    }
-
-    private void Start()
-    {
         // current.currentInputModule does not work
         inputModule = EventSystem.current.gameObject.GetComponent<VRInputModel>();
     }
