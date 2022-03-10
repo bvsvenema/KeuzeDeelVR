@@ -10,15 +10,19 @@ public class GameManager : MonoBehaviour
     private ScoreManager SM;
     //public varaibles
     public int rounds = 3;
-    public bool Testing; private const int maxLength = 10;
+    public bool Testing = false;
+    private const int maxLength = 10;
 
     //Gameobject callings
     public List<GameObject> singleplayer;
     public List<GameObject> twoPlayer;
     private GameObject player;
+    public GameObject canvas2P;
+    public GameObject canvasSingle;
 
     public void Start()
     {
+        canvas2P.SetActive(false);
         SM = GetComponent<ScoreManager>();
         if (Testing == true)
         {
@@ -76,13 +80,43 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void EndOfFrame()
+    private void Update()
     {
-        Debug.Log("this script");
         if (SM.Frame == rounds)
         {
             Debug.Log("End of Game");
-            //end of game
+            switch (TeleportPoint.teleportInt)
+            {
+                case 1: /*set score canvas 1 active */
+                    canvasSingle.SetActive(true);
+                    player.transform.position = new Vector3(-6.4f, 0, 1.158f);
+                    break;
+                case 2:
+                    //Debug.Log(SM.PlayerScore1, SM.playerTextOutput1);
+                    //Debug.Log(SM.PlayerScore2, SM.playerTextOutput2);
+                    canvas2P.SetActive(true);
+                    player.transform.position = new Vector3(-6.4f, 0, 1.158f);
+                    break;
+            }
+            rounds = -1;
+        }
+    }
+
+    public void EndOfFrame()
+    {
+        //Debug.Log("this script");
+        if (SM.Frame == rounds)
+        {
+        //    Debug.Log("End of Game");
+        //    switch (TeleportPoint.teleportInt)
+        //    {
+        //        case 1: /*set score canvas 1 active */
+        //            player.transform.position = new Vector3(-6.4f, 0, 1.158f);
+        //            break;
+        //        case 2: canvas2P.SetActive(true);
+        //            player.transform.position = new Vector3(-6.4f, 0, 1.158f);
+        //            break;
+        //    }
         }
         else
         {

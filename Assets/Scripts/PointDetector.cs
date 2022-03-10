@@ -18,7 +18,7 @@ public class PointDetector : MonoBehaviour
             switch (skeeball)
             {
                 case 1:
-                    if (SM.BallsThrownP1 == 2)
+                    if (SM.BallsThrownP1 == 4)
                     {
                         SM.PlayerScore1 += valuePoints;
                         playerOneHasTrown = true;
@@ -34,7 +34,7 @@ public class PointDetector : MonoBehaviour
                     }
                     break;
                 case 2:
-                    if (SM.BallsThrownP2 == 2)
+                    if (SM.BallsThrownP2 == 4)
                     {
                         SM.PlayerScore1 += valuePoints;
                         SM.BallsThrownP2 = 0;
