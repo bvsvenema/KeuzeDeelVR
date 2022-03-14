@@ -11,6 +11,7 @@ public class KeyDetector : MonoBehaviour
 
     //Script Calling
     public ScoreManager SM;
+    public GameManager GM;
 
     //priate variables
     private GameObject player;
@@ -64,12 +65,14 @@ public class KeyDetector : MonoBehaviour
                         }
                         else if (key.text == "Submit")
                         {
-                            if (TeleportPoint.teleportInt == 1)
+                            if (HandButtonPress.teleportInt == 1)
                             {
                                 Debug.Log("Just one player go to game");
                                 KeyBoard.SetActive(false);
                                 //transform rig to game
                                 player.transform.position = new Vector3(2.85f, 0.036f, 0.8f);
+                                GM.tabletP1.SetActive(true);
+                                GM.tabletSetname.SetActive(false);
                             }
                             else
                             {
@@ -91,6 +94,8 @@ public class KeyDetector : MonoBehaviour
                                         KeyBoard.SetActive(false);
                                         //transform rig to game
                                         player.transform.position = new Vector3(2.85f, 0.036f, 0.8f);
+                                        GM.tabletP1.SetActive(true);
+                                        GM.tabletSetname.SetActive(false);
                                     }
                                 }
                             }

@@ -8,10 +8,16 @@ public class PointDetector : MonoBehaviour
     public int skeeball;
     public ScoreManager SM;
     public GameManager GM;
+    private AudioSource Sound;
     public static bool playerOneHasTrown = false;
     public static bool playerTwoHasTrown = false;
 
-    private void OnTriggerExit(Collider other)
+    private void Start()
+    {
+        Sound = GetComponent<AudioSource>();
+    }
+
+    public void OnTriggerExit(Collider other)
     {
         if(other.tag == "Ball")
         {
@@ -24,11 +30,12 @@ public class PointDetector : MonoBehaviour
                         playerOneHasTrown = true;
                         SM.BallsThrownP1 = 0;
                         Debug.Log("next player or end game");
-                        GM.EndOfFrame();
+                        StartCoroutine(GM.EndOfFrame());
                     }
                     else
                     {
                         SM.BallsThrownP1++;
+                        Sound.Play();
                         SM.PlayerScore1 += valuePoints;
                         Debug.Log("Test");
                     }
@@ -39,12 +46,13 @@ public class PointDetector : MonoBehaviour
                         SM.PlayerScore1 += valuePoints;
                         SM.BallsThrownP2 = 0;
                         playerTwoHasTrown = true;
-                        GM.EndOfFrame();
+                        StartCoroutine(GM.EndOfFrame());
                         Debug.Log("next player or end game");
                     }
                     else
                     {
                         SM.BallsThrownP2++;
+                        Sound.Play();
                         SM.PlayerScore2 += valuePoints;
                         Debug.Log("Test2");
                     }
